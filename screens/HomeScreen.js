@@ -1,12 +1,13 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native'; 
+import { View, Text, Button, StyleSheet } from 'react-native';
+import { useAuth } from '../context/AuthContext';
 
-export default function HomeScreen({ route }) { 
-  const { username } = route.params; 
+export default function HomeScreen({ navigation }) {
+  const { user } = useAuth();
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Welcome, {username}</Text> 
+      <Text style={styles.text}>Welcome, {user?.username}!</Text>
+      <Button title="Go to Settings" onPress={() => navigation.navigate('Settings')} />
     </View>
   );
 }
